@@ -1,39 +1,59 @@
 {
-  "name": "q-template-assistant-react-advanced-typescript",
+  "name": "@io-maana/q-template-assistant-react-advanced-typescript",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "typescript": "~3.7.2"
-  },
   "scripts": {
+    "postinstall": "patch-package",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "NODE_ENV=${NODE_ENV:=development} webpack --config scripts/webpack.dev.config.js --watch --progress",
+    "serve": "serve -c ./serve.json -s build -l ${PORT:=3000}",
+    "tunnel": "lt -h \"http://serverless.social\" -p ${PORT:=3000}"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "browserslist": [
+    "last 3 chrome version",
+    "last 3 firefox version",
+    "last 3 safari version",
+    "last 2 edge version"
+  ],
+  "dependencies": {
+    "@io-maana/q-assistant-client": "^3.2.2-beta.31",
+    "@material-ui/core": "^4.9.14",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.9.14",
+    "history": "^4.10.1",
+    "localtunnel": "^2.0.0",
+    "lodash": "^4.17.15",
+    "patch-package": "^6.2.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "serve": "^11.3.0",
+    "typescript": "^3.7.5",
+    "uuid": "^8.0.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/history": "^4.7.5",
+    "@types/jest": "^24.9.1",
+    "@types/lodash": "^4.14.150",
+    "@types/node": "^12.12.38",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/uuid": "^7.0.3",
+    "@typescript-eslint/parser": "^2.32.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react-hooks": "^4.0.1",
+    "prettier": "^2.0.5",
+    "webpack-cli": "^3.3.11"
   }
 }

@@ -1,0 +1,3 @@
+var MAANA_ENV = {
+  LAMBDA_SERVICE_ID: "c90fc31d-c082-447a-89b3-0e07e9dde96a",
+};
