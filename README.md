@@ -1,44 +1,90 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Maana Q Assistant Template (Basic)
 
-## Available Scripts
+Basic template for a create-react-app to be used as a maana Q assistant.
 
-In the project directory, you can run:
+## What's inside?
 
-### `yarn start`
+- React App
+- Maana Q Assistant Client npm library installed
+- `.env` file with example variable printed in console (set in `Dockerfile`)
+- `Dockerfile`
+- nginx conf
+- Build/Run/Watch scripts
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Default Functionality
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Gets the current workspace.
+- Get the active graph from the workspace.
+- Creates a Function.
+- Adds the function as a node to the active graph in the workspace.
 
-### `yarn test`
+## Resources
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Hooks
+  - [useHooks.com](https://usehooks.com/) - advanced React Hooks examples
+- Environment variables
+  - [Adding Custom Environment Variables (CRA)](https://create-react-app.dev/docs/adding-custom-environment-variables/)
+- React + TypeScript
+  - [Getting Started with TypeScript and React (CRA)](https://create-react-app.dev/docs/adding-typescript/#getting-started-with-typescript-and-react)
+- GraphQL Schema to TypeScript defitions
+  - [GraphQL Code Generator](https://graphql-code-generator.com/)
 
-### `yarn build`
+## Development
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As with any Node application, you must first install dependencies:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```sh
+# install dependencies
+npm i
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# start watch mode, server, and tunnel service
+npm run start
+```
 
-### `yarn eject`
+`npm run start` will log a URL to the console (your tunnel endpoint); copy this and register it with your instance of Q (see [Registring a Custom Service](https://maana.gitbook.io/q/v/3.2.1/maana-q-cookbook/basic-ingredients/11-publish-knowledge-services)).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Deployment:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Docker or local
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Docker:
+    ```sh
+    # build docker image
+    sh dockerBuild.sh
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    # start image
+    sh dockerRun.sh
+    ```
+1. Local
+    ```sh
+    npm run start
+    ```
 
-## Learn More
+## NPM Scripts
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. `start`
+    - starts all other processes for a single entrypoint for development
+    - runs:
+        1. `watch`
+            - build application and start watch mode; builds to `./build`
+        1. `serve`
+            - runs a local web server to host `./build`
+        1. `tunnel`
+            - opens a tunnel to your local web server
+1. `build`
+    - builds a production version of the application; output directory: `./build`
+1. `test`
+    - runs jest tests
+1. `eject`
+    - (CAUTION) ejects from the `create-react-app` framework and toolset
+    - This is only intended for advanced users; use at your own risk.
+    - more information:
+      - Official docs on the topic: https://create-react-app.dev/docs/available-scripts/#npm-run-eject
+      - Alternatives to ejecting: https://medium.com/curated-by-versett/dont-eject-your-create-react-app-b123c5247741
+1. `postinstall`
+    - handles patching `react-scripts` with some small changes to the Webpack configuration to improve the developer experience
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Learn more about using the Maana Q Assistant Client library
+
+- https://github.com/maana-io/q-assistant-client/tree/develop
+- https://www.npmjs.com/package/@io-maana/q-assistant-client
